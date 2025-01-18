@@ -3,14 +3,16 @@ import React, { useState, FormEvent } from "react";
 import { FaTimes } from "react-icons/fa";
 import { registerUser, loginUser } from '../../utils/api';
 import Link from "next/link";
+import { toast } from "react-toastify";
+
 
 const RegisterPage: React.FC = () => {
   const [showSignup, setShowSignup] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
 
-  const [name, setName] = useState(''); 
-  const [email, setEmail] = useState(''); 
-  const [password, setPassword] = useState(''); 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState<string | null>(null);
   const [messageType, setMessageType] = useState<"success" | "error" | null>(null);
@@ -41,9 +43,15 @@ const RegisterPage: React.FC = () => {
       if (response.success) {
         setMessage('User registered successfully');
         setMessageType('success');
+        toast.success('Registered Successfully', {
+          position: 'top-right',
+        });
       } else {
         setMessage(response.message || 'Registration error');
         setMessageType('error');
+        toast.error('Registeration Unsuccessfull', {
+          position: 'top-right',
+        });
       }
     } catch (error) {
       setMessage('Registration error');
@@ -59,15 +67,23 @@ const RegisterPage: React.FC = () => {
       if (response.success) {
         setMessage('User logged in successfully');
         setMessageType('success');
+        toast.success('Login Successfull', {
+          position: 'top-right',
+        });
+        window.location.href = '/dashboard';
       } else {
         setMessage(response.message || 'Login error');
         setMessageType('error');
+        toast.error('Login Unsuccessfull', {
+          position: 'top-right',
+        });
       }
     } catch (error) {
       setMessage('Login error');
       setMessageType('error');
     }
   };
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -164,6 +180,9 @@ const RegisterPage: React.FC = () => {
               >
                 Sign Up
               </button>
+              <div className="mt-2 text-center">
+                <p className="text-gray-400">Already have an account? <Link href={'/'} onClick={handleLoginClick} className="text-blue-800 font-bold cursor-pointer hover:underline">Log In</Link></p>
+              </div>
             </form>
           </div>
         </div>
@@ -207,13 +226,18 @@ const RegisterPage: React.FC = () => {
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400 text-gray-700"
                 />
               </div>
-              <Link
-                href={"/home"}
-                type="submit"
-                className="w-full px-4 py-3 bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transform transition-transform hover:scale-105"
-              >
-                Login
-              </Link>
+             
+                <button
+                
+                  type="submit"
+                  className="w-full px-4 py-3 bg-gradient-to-r from-green-500 to-green-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transform transition-transform hover:scale-105"
+                >
+                  Login
+                </button>
+              
+              <div className="mt-2 text-center">
+                <p className="text-gray-400">Don't have an account? <Link href={'/'} onClick={handleRegisterClick} className="text-blue-800 font-bold cursor-pointer hover:underline ">Sign Up</Link></p>
+              </div>
             </form>
           </div>
         </div>
@@ -222,4 +246,4 @@ const RegisterPage: React.FC = () => {
   );
 };
 
-export default RegisterPage;
+export default RegisterPage
