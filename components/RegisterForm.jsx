@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function RegisterForm() {
   const [name, setName] = useState("");
@@ -49,7 +50,7 @@ export default function RegisterForm() {
       });
 
       toast.success('Admin Registered', {
-        position: toast.POSITION.TOP_RIGHT,
+        position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -64,7 +65,7 @@ export default function RegisterForm() {
         router.push("/");
       } else {
         toast.error('Registration Unsuccessful', {
-          position: toast.POSITION.TOP_RIGHT,
+          position: 'top-right',
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
