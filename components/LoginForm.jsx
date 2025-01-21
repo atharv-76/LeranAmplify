@@ -27,8 +27,27 @@ export default function LoginForm() {
         return;
       }
 
+      toast.success('Login Successful', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
       router.replace("dashboard");
     } catch (error) {
+      toast.error('Login Unsuccessful', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       console.log(error);
     }
   };
