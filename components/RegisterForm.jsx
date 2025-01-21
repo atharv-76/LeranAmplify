@@ -48,11 +48,30 @@ export default function RegisterForm() {
         }),
       });
 
+      toast.success('Admin Registered', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+
       if (res.ok) {
         const form = e.target;
         form.reset();
         router.push("/");
       } else {
+        toast.error('Registration Unsuccessful', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         console.log("User registration failed.");
       }
     } catch (error) {
