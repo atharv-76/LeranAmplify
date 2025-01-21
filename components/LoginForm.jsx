@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ export default function LoginForm() {
       }
 
       toast.success('Login Successful', {
-        position: toast.POSITION.TOP_RIGHT,
+        position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -40,7 +41,7 @@ export default function LoginForm() {
       router.replace("dashboard");
     } catch (error) {
       toast.error('Login Unsuccessful', {
-        position: toast.POSITION.TOP_RIGHT,
+        position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
