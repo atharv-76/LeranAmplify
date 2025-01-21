@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function ViewList() {
 
@@ -41,7 +42,7 @@ export default function ViewList() {
       }
 
       toast.success('User Deleted Successfully', {
-        position: toast.POSITION.TOP_RIGHT,
+        position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -51,7 +52,7 @@ export default function ViewList() {
       });
     } catch (error) {
       toast.error('User Deletion Failed', {
-        position: toast.POSITION.TOP_RIGHT,
+        position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
